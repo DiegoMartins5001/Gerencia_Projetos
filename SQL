@@ -1,0 +1,42 @@
+Tabelas
+
+CREATE TABLE users (
+ id_user serial NOT NULL,
+  name character varying(50) NOT NULL,
+  password numeric(11,0) NOT NULL,
+  data_nasc date,
+  data_admi date,
+  endereco character varying(255) NOT NULL,
+  fone numeric(10,0),
+  cel numeric(10,0) NOT NULL,
+  email character varying(30) NOT NULL,
+  remember_token text,
+  role character varying(255),
+  created_at timestamp without time zone,
+  updated_at timestamp without time zone,
+  PRIMARY KEY (id_user)
+);
+
+CREATE TABLE Projeto (
+  id_projeto serial not null,
+  nome varchar(255) not null,
+  descricao varchar(255) not null
+  id_user integer,
+  PRIMARY KEY (id_projeto),
+  FOREIGN KEY (id_user)
+      REFERENCES users (id_user)
+ );
+
+CREATE TABLE Lista (
+  id_lista serial NOT NULL,
+  tarefa character varying(255) NOT NULL,
+  data_limite date NOT NULL,
+  estado_tarefa boolean DEFAULT false,
+  id_projeto integer NOT NULL,
+  id_user integer NOT NULL,
+  PRIMARY KEY (id_lista),
+  FOREIGN KEY (id_projeto)
+      REFERENCES projeto (id_projeto),
+  FOREIGN KEY (id_user)
+      REFERENCES users (id_user)
+);
