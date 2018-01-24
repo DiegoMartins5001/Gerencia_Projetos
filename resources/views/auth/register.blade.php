@@ -2,11 +2,16 @@
 
 @section('content')
 <div class="container">
-    @if(Session::has('mensagens-sucesso'))
-    <div class="alert alert-success" role="alert">
-        <strong>{{Session::get('mensagens-sucesso')}}</strong>
-    </div>
-    @endif
+  @if(Session::has('mensagens-danger'))
+  <div class="alert alert-danger" role="alert">
+    <strong>{{Session::get('mensagens-danger')}}</strong>
+  </div>
+@endif
+@if(Session::has('mensagens-sucesso'))
+  <div class="alert alert-success" role="alert">
+    <strong>{{Session::get('mensagens-sucesso')}}</strong>
+  </div>
+@endif
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -48,7 +53,7 @@
                             <label for="password" class="col-md-4 control-label">CPF</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="numeric" class="form-control" name="password">
+                                <input type="numeric" class="form-control" name="password" value="{{ old('password') }}">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -62,7 +67,7 @@
                             <label class="col-md-4 control-label">Data de Nascimento</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="data_nasc">
+                                <input type="text" class="form-control" name="data_nasc" value="{{old('data_nasc')}}">
 
                                 @if ($errors->has('data_nasc'))
                                     <span class="help-block">
@@ -76,7 +81,7 @@
                             <label class="col-md-4 control-label">Data de Admissão</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="data_admi">
+                                <input type="text" class="form-control" name="data_admi" value="{{old('data_admi')}}">
 
                                 @if ($errors->has('data_admi'))
                                     <span class="help-block">
@@ -90,7 +95,7 @@
                             <label class="col-md-4 control-label">Endereço</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="endereco">
+                                <input type="text" class="form-control" name="endereco" value="{{old('endereco')}}">
 
                                 @if ($errors->has('endereco'))
                                     <span class="help-block">
@@ -104,7 +109,7 @@
                             <label class="col-md-4 control-label">Telefone</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="fone">
+                                <input type="text" class="form-control" name="fone" value="{{old('fone')}}">
 
                                 @if ($errors->has('fone'))
                                     <span class="help-block">
@@ -118,7 +123,7 @@
                             <label class="col-md-4 control-label">Celular</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="cel">
+                                <input type="text" class="form-control" name="cel" value="{{old('cel')}}">
 
                                 @if ($errors->has('cel'))
                                     <span class="help-block">

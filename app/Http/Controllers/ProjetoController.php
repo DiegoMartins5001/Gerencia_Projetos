@@ -20,7 +20,7 @@ class ProjetoController extends Controller{
     public function listar_projetos(){
     	$id_user = \Session::get('id_user');
         $projeto = Projeto::orderBy('nome')->where('id_user',auth()->user()->id_user)->paginate(5);
-        //dd($projeto);
+        //dd($projeto[0] == '');
     	return view('projeto.listar',['projeto'=>$projeto]);
     }
 
@@ -45,7 +45,7 @@ class ProjetoController extends Controller{
 
         $data_hoje = \Carbon\Carbon::today()->format('Y/m/d');
         if($data_hoje > str_replace('-', '/', $request->data_limite)){
-            return redirect()->back()->withInput()->with('mensagens-danger','Data não pode Ser Retrotiva!!!');
+            return redirect()->back()->withInput()->with('mensagens-danger','Data não pode Ser Retroativa!!!');
         }else{
             $projeto = new Projeto();
             $projeto->nome = $request->input('nome');

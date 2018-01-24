@@ -9,7 +9,7 @@
                   <strong><h3>Projetos</h3></strong>
                 </div>
                 <div class="panel-body">
-                  @if($projeto == null) 
+                  @if($projeto[0] == '') 
                     <div class="panel-body">
                       <div class="panel-body text-center">
                         <h1 class="text-info">
@@ -21,7 +21,7 @@
                   <table style="display: block !important;" class="table table-responsive">
                    	<thead>
                    		<th>Nome</th>
-                   		<th></th>
+                   		<th>Descrição do Projeto</th>
                       <th class="text-center text-primary">Mais Detalhes</th>
                       <th class="text-center text-info">Editar</th>
                       <th class="text-center text-danger">Excluir</th>

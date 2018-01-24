@@ -1,38 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Requests;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Http\Requests;
-use App\Http\Requests\RegisterFormRequest;
-use App\User;
+use Illuminate\Foundation\Http\FormRequest;
 
-class UserController extends Controller
+class RegisterFormRequest extends FormRequest
 {
-    public function index(){
-    	return view('entrada.entrada');
-    }
-    public function index_dev(){
-        return view('entrada.dev_entrada');
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
     }
 
-    public function form_user(){
-    	return view('auth.register');
-    }
-    // 
-    public function novo_user(Request $request){
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required|numeric',
-            'data_nasc' => 'required|date',
-            'data_admi' => 'required|date',
-            'endereco' => 'required',
-            'fone' => 'required|numeric',
-            'cel' => 'required|numeric',
-            'role' => 'required',
-        ],[
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
             'name.required' => 'O Campo Nome Não Pode ser Vazio',
             'name.max' => 'O Campo permite Somente 255 Caracteres',
             'email.required' => 'O Campo E-mail Não Pode ser Vazio',
@@ -55,10 +46,6 @@ class UserController extends Controller
             'cel.min:11' => 'Não pode ser inferior a 11 Caracteres',
             'cel.max:11' => 'não pode ser superior a 11 Caracteres',
             'role.required' => 'Escolha uma Opção',
-        ]);
-        $usuario = new User($request->all());
-        $usuario->save();
-        return redirect('registrar_usuario')->with('mensagens-sucesso','Cadastrado com sucesso');
-
+        ];
     }
 }

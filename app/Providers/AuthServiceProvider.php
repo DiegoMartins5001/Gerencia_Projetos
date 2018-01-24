@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('registrar_usuario', function (User $user, Projeto $projeto) {
+            return Auth::role('ges') == $projeto->id_projeto;
+        });
     }
 }
