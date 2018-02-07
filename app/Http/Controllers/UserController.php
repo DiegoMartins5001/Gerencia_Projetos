@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests;
 use App\Http\Requests\RegisterFormRequest;
 use App\User;
+use Crypt;
 
 class UserController extends Controller
 {
@@ -57,6 +58,7 @@ class UserController extends Controller
             'role.required' => 'Escolha uma Opção',
         ]);
         $usuario = new User($request->all());
+        $usuario->password = Crypt::encrypt($request->input('password'));
         $usuario->save();
         return redirect('registrar_usuario')->with('mensagens-sucesso','Cadastrado com sucesso');
 

@@ -6,7 +6,15 @@
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-default">
                 <div class="panel-heading">Projetos</div>
-                @if($projeto != null)
+                @if($projeto == '')
+                  <div class="panel-body">
+                    <div class="panel-body text-center">
+                      <h1 class="text-info">
+                        Não está Participando de Nenhum <strong>Projeto</strong> no Momento
+                      </h1>
+                    </div>
+                  </div>
+                @else
                 <div class="panel-body">
                   <table class="table">
                    	<thead>
@@ -29,14 +37,6 @@
                      </tbody>
                     @endforeach
                   </table>
-                </div>
-                @else
-                <div class="panel-body">
-                  <div class="panel-body text-center">
-                    <h1 class="text-info">
-                      Não está participando de nenhum <strong>Projeto</strong> no momento
-                    </h1>
-                  </div>
                 </div>
                 @endif
             </div>

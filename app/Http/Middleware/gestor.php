@@ -16,7 +16,7 @@ class gestor
      * @return mixed
      */
     public function handle($request, Closure $next, $guard = null){
-        if (Auth::user()->role == 'dev') {
+        if (Auth::user()->role == 'ges') {
             return redirect('/home');
         }
         return $next($request);

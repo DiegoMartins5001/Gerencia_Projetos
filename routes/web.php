@@ -28,7 +28,7 @@ Route::get('index_dev','UserController@index_dev')->middleware('auth');
 Route::post('/login','Auth\LoginController@postLogin');
 Route::post('registrar','UserController@novo_user');
 
-Route::get('registrar_usuario','UserController@form_user')->middleware('gestor');
+Route::get('registrar_usuario','UserController@form_user');
 
 Route::group(['middleware'=>'App\Http\Middleware\gestor'], function(){
 	Route::get('novo_projeto', 'ProjetoController@novo_projeto')->middleware('gestor');
